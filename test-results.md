@@ -1,10 +1,10 @@
 # SQL Test Results - Sakila
 
-I executed ten SQL checks manually in MySQL Workbench using the Sakila sample database. For each check, I recorded the objective, expected result, actual result, and status.
+I executed eleven SQL checks manually in MySQL Workbench using the Sakila sample database. For each check, I recorded the objective, expected result, actual result, and status.
 
 I marked a check as PASS when its actual result matched the expected result. This is a personal SQL practice and data validation project.
 
-The matching queries are in [queries.sql](queries.sql), labeled SQL-001 through SQL-010.
+The matching queries are in [queries.sql](queries.sql), labeled SQL-001 through SQL-011.
 
 ## Execution summary
 
@@ -20,8 +20,9 @@ The matching queries are in [queries.sql](queries.sql), labeled SQL-001 through 
 | SQL-008 | `GROUP BY` | PENELOPE = 4; NICK = 3 | PASS |
 | SQL-009 | `IS NULL` | 0 rows | PASS |
 | SQL-010 | `HAVING COUNT(*) > 1` | 0 rows | PASS |
+| SQL-011 | `COUNT(*)` of actor-film rows | Count value = 19 for actor ID 1 | PASS |
 
-**Total: 10 executed checks | 10 PASS | 0 FAIL**
+**Total: 11 executed checks | 11 PASS | 0 FAIL**
 
 ## SQL-001 - Filter actors by first name
 
@@ -210,3 +211,15 @@ The matching queries are in [queries.sql](queries.sql), labeled SQL-001 through 
 **Status:** PASS
 
 **Note:** I checked the existing records in `sakila.actor` for repeated IDs. Duplicate insertion and uniqueness outside this table were outside the scope of this check.
+
+## SQL-011 - Validate Actor-Film Record Count
+
+**Objective:** Count film associations for actor ID 1 and compare the total with the 19 rows observed in SQL-007.
+
+**Expected result:** `COUNT(*)` returns `19` for `actor_id = 1`, matching SQL-007.
+
+**Actual result:** `COUNT(*)` returned `19`.
+
+**Status:** PASS
+
+**Note:** This is a separate count query on `sakila.film_actor`. It confirms the row count observed in SQL-007 for actor ID 1; it does not verify film titles or wider database integrity.
