@@ -1,5 +1,5 @@
 -- SQL Testing Practice - Sakila
--- MySQL Workbench queries for ten SQL practice and data validation checks.
+-- MySQL Workbench queries for eleven SQL practice and data validation checks.
 -- All statements are read-only. Results are documented in test-results.md.
 
 -- SQL-001 - Filter actors by first name
@@ -76,3 +76,9 @@ SELECT actor_id, COUNT(*) AS duplicate_count
 FROM sakila.actor
 GROUP BY actor_id
 HAVING COUNT(*) > 1;
+
+-- SQL-011 - Validate actor-film record count
+-- Compare the count with the 19 rows observed in SQL-007.
+SELECT COUNT(*) AS film_count
+FROM sakila.film_actor
+WHERE actor_id = 1;
